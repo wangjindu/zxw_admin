@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxw.admin.basic.sign.mapper.SignMapper">
+
+    <resultMap id="BaseResultMap" type="com.zxw.admin.basic.sign.entity.SignEntity">
+        <id column="SIGN_ID" jdbcType="CHAR" property="signId"/>
+        <result column="SIGN_TYPE" jdbcType="TINYINT" property="signType"/>
+        <result column="SIGN_NAME" jdbcType="CHAR" property="signName"/>
+        <result column="SIGN_PHONE" jdbcType="CHAR" property="signPhone"/>
+        <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime"/>
+    </resultMap>
+    
+    <select id="getAllSign" resultMap="BaseResultMap">
+        select * from zxw_basic_sign order by ADD_TIME DESC
+    </select>
+
+    <delete id="deleteSignById" parameterType="String">
+        delete from zxw_basic_sign where SIGN_ID = #{signId, jdbcType = CHAR}
+    </delete>
+
+</mapper>

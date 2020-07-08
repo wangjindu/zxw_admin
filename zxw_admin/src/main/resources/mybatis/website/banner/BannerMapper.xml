@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxw.admin.website.banner.mapper.BannerMapper">
+
+    <cache/>
+
+    <resultMap id="BaseResultMap" type="com.zxw.admin.website.banner.entity.BannerEntity">
+        <id column="BANNER_ID" jdbcType="CHAR" property="bannerId"/>
+        <result column="BANNER_TITLE" jdbcType="VARCHAR" property="bannerTitle"/>
+        <result column="BANNER_ICON" jdbcType="VARCHAR" property="bannerIcon"/>
+        <result column="BANNER_URL" jdbcType="VARCHAR" property="bannerUrl"/>
+        <result column="BANNER_FLAG" jdbcType="CHAR" property="bannerFlag"/>
+        <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime"/>
+        <result column="BANNER_TYPE" jdbcType="TINYINT" property="bannerType"/>
+    </resultMap>
+
+    <insert id="postBanner" parameterType="com.zxw.admin.website.banner.entity.BannerEntity">
+        insert into zxw_website_banner
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bannerId != null">
+                BANNER_ID,
+            </if>
+            <if test="bannerTitle != null">
+                BANNER_TITLE,
+            </if>
+            <if test="bannerIcon != null">
+                BANNER_ICON,
+            </if>
+            <if test="bannerUrl != null">
+                BANNER_URL,
+            </if>
+            <if test="bannerFlag != null">
+                BANNER_FLAG,
+            </if>
+            <if test="addTime != null">
+                ADD_TIME,
+            </if>
+            <if test="bannerType != null">
+                BANNER_TYPE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bannerId != null">
+                #{bannerId, jdbcType = CHAR},
+            </if>
+            <if test="bannerTitle != null">
+                #{bannerTitle, jdbcType = VARCHAR},
+            </if>
+            <if test="bannerIcon != null">
+                #{bannerIcon, jdbcType = VARCHAR},
+            </if>
+            <if test="bannerUrl != null">
+                #{bannerUrl, jdbcType = VARCHAR},
+            </if>
+            <if test="bannerFlag != null">
+                #{bannerFlag, jdbcType = CHAR},
+            </if>
+            <if test="addTime != null">
+                #{addTime, jdbcType = TIMESTAMP},
+            </if>
+            <if test="bannerType != null">
+                #{bannerType, jdbcType = TINYINT},
+            </if>
+        </trim>
+    </insert>
+    
+    <update id="putBannerById" parameterType="com.zxw.admin.website.banner.entity.BannerEntity">
+        update zxw_website_banner
+        <set>
+            <if test="bannerTitle != null">
+                BANNER_TITLE = #{bannerTitle, jdbcType = VARCHAR},
+            </if>
+            <if test="bannerIcon != null">
+                BANNER_ICON = #{bannerIcon, jdbcType = VARCHAR},
+            </if>
+            <if test="bannerUrl != null">
+                BANNER_URL = #{bannerUrl, jdbcType = VARCHAR},
+            </if>
+            <if test="bannerFlag != null">
+                BANNER_FLAG = #{bannerFlag, jdbcType = CHAR},
+            </if>
+            <if test="addTime != null">
+                ADD_TIME = #{addTime, jdbcType = TIMESTAMP},
+            </if>
+            <if test="bannerType != null">
+                BANNER_TYPE = #{bannerType, jdbcType = TINYINT},
+            </if>
+        </set>
+        where BANNER_ID = #{bannerId, jdbcType = CHAR}
+    </update>
+
+    <update id="putBannerFlagById" parameterType="com.zxw.admin.website.banner.entity.BannerEntity">
+        update zxw_website_banner
+        set BANNER_FLAG = #{bannerFlag, jdbcType = CHAR}
+        where BANNER_ID = #{bannerId, jdbcType = CHAR}
+    </update>
+
+    <select id="getAllPhBanner" resultMap="BaseResultMap">
+        select b.BANNER_ID, b.BANNER_TITLE, b.BANNER_ICON, b.BANNER_URL
+        from zxw_website_banner b
+        where b.BANNER_FLAG = 'true' and b.BANNER_TYPE = 2
+        order by b.ADD_TIME desc
+    </select>
+
+    <select id="getAllPcBanner" resultMap="BaseResultMap">
+        select b.BANNER_ID, b.BANNER_TITLE, b.BANNER_ICON, b.BANNER_URL
+        from zxw_website_banner b
+        where b.BANNER_FLAG = 'true' and b.BANNER_TYPE = 1
+        order by b.ADD_TIME desc
+    </select>
+
+    <select id="getAllBanner" resultMap="BaseResultMap">
+        select b.BANNER_ID, b.BANNER_TITLE, b.BANNER_ICON, b.BANNER_URL, b.BANNER_FLAG, b.ADD_TIME, b.BANNER_TYPE
+        from zxw_website_banner b
+        order by b.ADD_TIME desc
+    </select>
+
+    <delete id="deleteBannerById" parameterType="String">
+        delete from zxw_website_banner where BANNER_ID = #{bannerId, jdbcType = CHAR}
+    </delete>
+
+</mapper>

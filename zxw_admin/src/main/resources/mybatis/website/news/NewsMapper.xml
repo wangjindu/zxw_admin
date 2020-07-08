@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxw.admin.website.news.mapper.NewsMapper">
+
+    <cache/>
+
+    <resultMap id="BaseResultMap" type="com.zxw.admin.website.news.entity.NewsEntity">
+        <id column="NEWS_ID" jdbcType="CHAR" property="newsId"/>
+        <result column="NEWS_SCOURCE" jdbcType="CHAR" property="newsScource"/>
+        <result column="NEWS_TYPE" jdbcType="TINYINT" property="newsType"/>
+        <result column="NEWS_TITLE" jdbcType="VARCHAR" property="newsTitle"/>
+        <result column="NEWS_ICON" jdbcType="VARCHAR" property="newsIcon"/>
+        <result column="NEWS_SUMMARY" jdbcType="LONGVARCHAR" property="newsSummary"/>
+        <result column="NEWS_CONTENT" jdbcType="LONGVARCHAR" property="newsContent"/>
+        <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime"/>
+        <result column="READ_COUNT" jdbcType="BIGINT" property="readCount"/>
+        <result column="SEARCH_KEY" jdbcType="TINYINT" property="searchKey"/>
+    </resultMap>
+
+    <insert id="postNews" parameterType="com.zxw.admin.website.news.entity.NewsEntity">
+        insert into zxw_website_news
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="newsId != null">
+                NEWS_ID,
+            </if>
+            <if test="newsScource != null">
+                NEWS_SCOURCE,
+            </if>
+            <if test="newsType != null">
+                NEWS_TYPE,
+            </if>
+            <if test="newsTitle != null">
+                NEWS_TITLE,
+            </if>
+            <if test="newsIcon != null">
+                NEWS_ICON,
+            </if>
+            <if test="newsSummary != null">
+                NEWS_SUMMARY,
+            </if>
+            <if test="newsContent != null">
+                NEWS_CONTENT,
+            </if>
+            <if test="addTime != null">
+                ADD_TIME,
+            </if>
+            <if test="readCount != null">
+                READ_COUNT,
+            </if>
+            <if test="searchKey != null">
+                SEARCH_KEY,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="newsId != null">
+                #{newsId, jdbcType = CHAR},
+            </if>
+            <if test="newsScource != null">
+                #{newsScource, jdbcType = CHAR},
+            </if>
+            <if test="newsType != null">
+                #{newsType, jdbcType = TINYINT},
+            </if>
+            <if test="newsTitle != null">
+                #{newsTitle, jdbcType = VARCHAR},
+            </if>
+            <if test="newsIcon != null">
+                #{newsIcon, jdbcType = VARCHAR},
+            </if>
+            <if test="newsSummary != null">
+                #{newsSummary, jdbcType = LONGVARCHAR},
+            </if>
+            <if test="newsContent != null">
+                #{newsContent, jdbcType = LONGVARCHAR},
+            </if>
+            <if test="addTime != null">
+                #{addTime, jdbcType = TIMESTAMP},
+            </if>
+            <if test="readCount != null">
+                #{readCount, jdbcType = BIGINT},
+            </if>
+            <if test="searchKey != null">
+                #{searchKey, jdbcType = TINYINT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="putNewsById" parameterType="com.zxw.admin.website.news.entity.NewsEntity">
+        update zxw_website_news
+        <trim prefix="set" suffixOverrides=",">
+            <if test="newsScource != null">
+                NEWS_SCOURCE = #{newsScource, jdbcType = CHAR},
+            </if>
+            <if test="newsType != null">
+                NEWS_TYPE = #{newsType, jdbcType = TINYINT},
+            </if>
+            <if test="newsTitle != null">
+                NEWS_TITLE = #{newsTitle, jdbcType = VARCHAR},
+            </if>
+            <if test="newsIcon != null">
+                NEWS_ICON = #{newsIcon, jdbcType = VARCHAR},
+            </if>
+            <if test="newsSummary != null">
+                NEWS_SUMMARY = #{newsSummary, jdbcType = LONGVARCHAR},
+            </if>
+            <if test="newsContent != null">
+                NEWS_CONTENT = #{newsContent, jdbcType = LONGVARCHAR},
+            </if>
+            <if test="addTime != null">
+                ADD_TIME = #{addTime, jdbcType = TIMESTAMP},
+            </if>
+            <if test="readCount != null">
+                READ_COUNT = #{readCount, jdbcType = BIGINT},
+            </if>
+            <if test="searchKey != null">
+                SEARCH_KEY = #{searchKey, jdbcType = TINYINT},
+            </if>
+        </trim>
+        where NEWS_ID = #{newsId, jdbcType = CHAR}
+    </update>
+
+    <delete id="deleteNewsById" parameterType="String">
+        delete from zxw_website_news where NEWS_ID = #{newsId, jdbcType = CHAR}
+    </delete>
+
+    <select id="getAllNews" resultMap="BaseResultMap">
+        select n.NEWS_ID, n.NEWS_SCOURCE, n.NEWS_TYPE, n.NEWS_TITLE, n.NEWS_ICON, n.NEWS_SUMMARY, n.NEWS_CONTENT, n.ADD_TIME, n.READ_COUNT, n.SEARCH_KEY
+        from zxw_website_news n
+        order by n.ADD_TIME desc
+    </select>
+</mapper>

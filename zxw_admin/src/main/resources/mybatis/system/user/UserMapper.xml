@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxw.admin.system.user.mapper.Usermapper">
+
+    <cache/>
+
+    <resultMap id="BaseResultMap" type="com.zxw.admin.system.user.entity.UserEntity">
+        <id column="USER_ID" jdbcType="CHAR" property="userId"/>
+        <result column="USER_NAME" jdbcType="VARCHAR" property="userName"/>
+        <result column="USER_PWD" jdbcType="CHAR" property="userPwd"/>
+        <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime"/>
+    </resultMap>
+
+    <select id="getAllUser" resultMap="BaseResultMap">
+		SELECT *
+		FROM zxw_system_user
+	</select>
+
+    <select id="getUserByName" parameterType="String" resultMap="BaseResultMap">
+		SELECT *
+		FROM zxw_system_user
+		WHERE USER_NAME = #{userName,jdbcType=VARCHAR}
+	</select>
+
+    <select id="getUserById" parameterType="String" resultType="com.zxw.admin.system.user.entity.UserEntity">
+		SELECT *
+		FROM zxw_system_user
+		WHERE USER_ID = #{userId,jdbcType=CHAR}
+	</select>
+
+    <insert id="postUser" parameterType="com.zxw.admin.system.user.entity.UserEntity">
+        INSERT INTO zxw_system_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                USER_ID,
+            </if>
+            <if test="userName != null">
+                USER_NAME,
+            </if>
+            <if test="userPwd != null">
+                USER_PWD,
+            </if>
+            <if test="addTime != null">
+                ADD_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=CHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPwd != null">
+                #{userPwd,jdbcType=CHAR},
+            </if>
+            <if test="addTime != null">
+                #{addTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

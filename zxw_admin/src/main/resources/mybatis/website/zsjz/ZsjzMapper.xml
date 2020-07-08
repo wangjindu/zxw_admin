@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxw.admin.website.zsjz.mapper.ZsjzMapper">
+
+    <cache/>
+
+    <resultMap id="BaseResultMap" type="com.zxw.admin.website.zsjz.entity.ZsjzEntity">
+        <id column="ZSJZ_ID" jdbcType="CHAR" property="zsjzId"/>
+        <result column="ZSJZ_TITLE" jdbcType="CHAR" property="zsjzTitle"/>
+        <result column="ZSJZ_ICONA" jdbcType="VARCHAR" property="zsjzIcona"/>
+        <result column="ZSJZ_ICONB" jdbcType="VARCHAR" property="zsjzIconb"/>
+        <result column="ZSJZ_ICONC" jdbcType="VARCHAR" property="zsjzIconc"/>
+        <result column="ZSJZ_ICOND" jdbcType="VARCHAR" property="zsjzIcond"/>
+        <result column="ZSJZ_SUMMARY" jdbcType="CHAR" property="zsjzSummary"/>
+        <result column="ZSJZ_TYPE" jdbcType="TINYINT" property="zsjzType"/>
+        <result column="ZSJZ_CONTENT" jdbcType="VARCHAR" property="zsjzContent"/>
+        <result column="ZSJZ_CLASS" jdbcType="CHAR" property="zsjzClass"/>
+        <result column="ZSJZ_JOB" jdbcType="CHAR" property="zsjzJob"/>
+        <result column="END_TIME" jdbcType="CHAR" property="endTime"/>
+        <result column="ZSJZ_URL" jdbcType="VARCHAR" property="zsjzUrl"/>
+        <result column="ZSJZ_NAME" jdbcType="CHAR" property="zsjzName"/>
+        <result column="ZSJZ_TIME" jdbcType="TINYINT" property="zsjzTime"/>
+        <result column="ZSJZ_A" jdbcType="CHAR" property="zsjzA"/>
+        <result column="ZSJZ_B" jdbcType="CHAR" property="zsjzB"/>
+        <result column="ZSJZ_C" jdbcType="CHAR" property="zsjzC"/>
+        <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime"/>
+        <result column="EN_COUNT" jdbcType="BIGINT" property="enCount"/>
+        <result column="SEARCH_KEY" jdbcType="TINYINT" property="searchKey"/>
+    </resultMap>
+
+
+
+    <update id="putZsjzById" parameterType="com.zxw.admin.website.zsjz.entity.ZsjzEntity">
+        update zxw_website_zsjz
+        <trim prefix="set" suffixOverrides=",">
+            <if test="zsjzTitle != null">
+                ZSJZ_TITLE = #{zsjzTitle, jdbcType = CHAR},
+            </if>
+            <if test="zsjzIcona != null">
+                ZSJZ_ICONA = #{zsjzIcona, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzIconb != null">
+                ZSJZ_ICONB = #{zsjzIconb, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzIconc != null">
+                ZSJZ_ICONC = #{zsjzIconc, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzIcond != null">
+                ZSJZ_ICOND = #{zsjzIcond, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzSummary != null">
+                ZSJZ_SUMMARY = #{zsjzSummary, jdbcType = CHAR},
+            </if>
+            <if test="zsjzType != null">
+                ZSJZ_TYPE = #{zsjzType, jdbcType = TINYINT},
+            </if>
+            <if test="zsjzContent != null">
+                ZSJZ_CONTENT = #{zsjzContent, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzClass != null">
+                ZSJZ_CLASS = #{zsjzClass, jdbcType = CHAR},
+            </if>
+            <if test="zsjzJob != null">
+                ZSJZ_JOB = #{zsjzJob, jdbcType = CHAR},
+            </if>
+            <if test="endTime != null">
+                END_TIME = #{endTime, jdbcType = CHAR},
+            </if>
+            <if test="zsjzUrl != null">
+                ZSJZ_URL = #{zsjzUrl, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzName != null">
+                ZSJZ_NAME = #{zsjzName, jdbcType = CHAR},
+            </if>
+            <if test="zsjzTime != null">
+                ZSJZ_TIME = #{zsjzTime, jdbcType = TINYINT},
+            </if>
+            <if test="zsjzA != null">
+                ZSJZ_A = #{zsjzA, jdbcType = CHAR},
+            </if>
+            <if test="zsjzB != null">
+                ZSJZ_B = #{zsjzB, jdbcType = CHAR},
+            </if>
+            <if test="zsjzC != null">
+                ZSJZ_C = #{zsjzC, jdbcType = CHAR},
+            </if>
+            <if test="addTime != null">
+                ADD_TIME = #{addTime, jdbcType = TIMESTAMP},
+            </if>
+            <if test="enCount != null">
+                EN_COUNT = #{enCount, jdbcType = BIGINT},
+            </if>
+            <if test="searchKey != null">
+                SEARCH_KEY = #{searchKey, jdbcType = TINYINT},
+            </if>
+        </trim>
+        where ZSJZ_ID = #{zsjzId, jdbcType = CHAR}
+    </update>
+
+    <insert id="postZsjz" parameterType="com.zxw.admin.website.zsjz.entity.ZsjzEntity">
+        insert into zxw_website_zsjz
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="zsjzId != null">
+                ZSJZ_ID,
+            </if>
+            <if test="zsjzTitle != null">
+                ZSJZ_TITLE,
+            </if>
+            <if test="zsjzIcona != null">
+                ZSJZ_ICONA,
+            </if>
+            <if test="zsjzIconb != null">
+                ZSJZ_ICONB,
+            </if>
+            <if test="zsjzIconc != null">
+                ZSJZ_ICONC,
+            </if>
+            <if test="zsjzIcond != null">
+                ZSJZ_ICOND,
+            </if>
+            <if test="zsjzSummary != null">
+                ZSJZ_SUMMARY,
+            </if>
+            <if test="zsjzType != null">
+                ZSJZ_TYPE,
+            </if>
+            <if test="zsjzContent != null">
+                ZSJZ_CONTENT,
+            </if>
+            <if test="zsjzClass != null">
+                ZSJZ_CLASS,
+            </if>
+            <if test="zsjzJob != null">
+                ZSJZ_JOB,
+            </if>
+            <if test="endTime != null">
+                END_TIME,
+            </if>
+            <if test="zsjzUrl != null">
+                ZSJZ_URL,
+            </if>
+            <if test="zsjzName != null">
+                ZSJZ_NAME,
+            </if>
+            <if test="zsjzTime != null">
+                ZSJZ_TIME,
+            </if>
+            <if test="zsjzA != null">
+                ZSJZ_A,
+            </if>
+            <if test="zsjzB != null">
+                ZSJZ_B,
+            </if>
+            <if test="zsjzC != null">
+                ZSJZ_C,
+            </if>
+            <if test="addTime != null">
+                ADD_TIME,
+            </if>
+            <if test="enCount != null">
+                EN_COUNT,
+            </if>
+            <if test="searchKey != null">
+                SEARCH_KEY,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="zsjzId != null">
+                #{zsjzId, jdbcType = CHAR},
+            </if>
+            <if test="zsjzTitle != null">
+                #{zsjzTitle, jdbcType = CHAR},
+            </if>
+            <if test="zsjzIcona != null">
+                #{zsjzIcona, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzIconb != null">
+                #{zsjzIconb, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzIconc != null">
+                #{zsjzIconc, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzIcond != null">
+                #{zsjzIcond, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzSummary != null">
+                #{zsjzSummary, jdbcType = CHAR},
+            </if>
+            <if test="zsjzType != 0">
+                #{zsjzType, jdbcType = TINYINT},
+            </if>
+            <if test="zsjzContent != null">
+                #{zsjzContent, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzClass != null">
+                #{zsjzClass, jdbcType = CHAR},
+            </if>
+            <if test="zsjzJob != null">
+                #{zsjzJob, jdbcType = CHAR},
+            </if>
+            <if test="endTime != null">
+                #{endTime, jdbcType = CHAR},
+            </if>
+            <if test="zsjzUrl != null">
+                #{zsjzUrl, jdbcType = VARCHAR},
+            </if>
+            <if test="zsjzName != null">
+                #{zsjzName, jdbcType = CHAR},
+            </if>
+            <if test="zsjzTime != null">
+                #{zsjzTime, jdbcType = TINYINT},
+            </if>
+            <if test="zsjzA != null">
+                #{zsjzA, jdbcType = CHAR},
+            </if>
+            <if test="zsjzB != null">
+                #{zsjzB, jdbcType = CHAR},
+            </if>
+            <if test="zsjzC != null">
+                #{zsjzC, jdbcType = CHAR},
+            </if>
+            <if test="addTime != null">
+                #{addTime, jdbcType = TIMESTAMP},
+            </if>
+            <if test="enCount != null">
+                #{enCount, jdbcType = BIGINT},
+            </if>
+            <if test="searchKey != null">
+                #{searchKey, jdbcType = TINYINT},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getAllZsjz" resultMap="BaseResultMap">
+        select z.ZSJZ_ID, z.ZSJZ_TITLE, z.ZSJZ_ICONA, z.ZSJZ_ICONB, z.ZSJZ_ICONC, z.ZSJZ_ICOND, z.ZSJZ_SUMMARY, z.ZSJZ_TYPE, z.ZSJZ_CONTENT,
+               z.ZSJZ_CLASS, z.ZSJZ_JOB, z.END_TIME,z.ZSJZ_URL, z.ZSJZ_NAME, z.ZSJZ_TIME, z.ZSJZ_A, z.ZSJZ_B, z.ZSJZ_C,
+               z.ADD_TIME, z.EN_COUNT,z.SEARCH_KEY
+        from zxw_website_zsjz z
+        order by z.ADD_TIME desc
+    </select>
+
+    <delete id="deleteZsjzById" parameterType="String">
+        delete from zxw_website_zsjz where ZSJZ_ID = #{zsjzId, jdbcType = CHAR}
+    </delete>
+</mapper>
